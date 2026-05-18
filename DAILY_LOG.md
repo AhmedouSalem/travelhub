@@ -40,3 +40,25 @@
 ### Décision technique
 - Utilisation de MongoDB avec Mongoose pour accélérer le développement
 - Utilisation de Swagger dès le début pour tester et documenter l’API
+
+## Jour 3 - Authentification utilisateur
+
+### Ce qui fonctionne
+- Création du module Users
+- Création du schéma User avec Mongoose
+- Création du module Auth
+- Ajout de l'inscription utilisateur
+- Hash du mot de passe avec bcryptjs
+- Ajout de la connexion utilisateur
+- Génération d'un JWT après register/login
+- Test des endpoints Auth avec Swagger
+
+### Ce qui reste à faire
+- Ajouter une route `/auth/profile`
+- Ajouter un guard JWT
+- Ajouter les rôles USER / ADMIN sur les futures routes
+- Créer le module catalogue de services
+
+### Décision technique
+- Mot de passe jamais retourné dans les réponses API
+- JWT contenant `sub`, `email` et `role`
