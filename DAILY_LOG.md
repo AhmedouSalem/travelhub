@@ -62,3 +62,24 @@
 ### Décision technique
 - Mot de passe jamais retourné dans les réponses API
 - JWT contenant `sub`, `email` et `role`
+
+## Jour 4 - Protection JWT des routes
+
+### Ce qui fonctionne
+- Ajout de Passport JWT
+- Création de `JwtStrategy`
+- Création de `JwtAuthGuard`
+- Création du décorateur `@CurrentUser`
+- Ajout de la route protégée `/auth/profile`
+- Test du token JWT dans Swagger avec le bouton Authorize
+
+### Ce qui reste à faire
+- Ajouter un système de rôles USER / ADMIN
+- Créer le module catalogue de services
+- Protéger les futures routes admin
+- Ajouter les premiers tests API
+
+### Décision technique
+- Les routes publiques restent `register` et `login`
+- Les futures routes sensibles utiliseront `JwtAuthGuard`
+- Le payload JWT contient `sub`, `email` et `role`
