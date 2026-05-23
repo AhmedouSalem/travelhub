@@ -6,12 +6,14 @@ import { User, UserSchema } from './schemas/user.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([
-      {
-        name: User.name,
-        schema: UserSchema,
-      },
-    ]),
+    MongooseModule.forFeature(// sert à enregistrer un ou plusieurs modèle Mongoose dans ce module précis.
+      [
+        {
+          name: User.name,
+          schema: UserSchema,
+        },
+      ]
+    ),
   ],
   controllers: [UsersController],
   providers: [UsersService],

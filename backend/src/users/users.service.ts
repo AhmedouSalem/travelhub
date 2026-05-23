@@ -15,7 +15,7 @@ export type SafeUser = {
 export class UsersService {
   constructor(
     @InjectModel(User.name)
-    private readonly userModel: Model<UserDocument>,
+    private readonly userModel: Model<UserDocument>,// c’est un modèle Mongoose manipulant des documents de type UserDocument.
   ) {}
 
   async create(data: {
@@ -27,7 +27,7 @@ export class UsersService {
     const existingUser = await this.userModel.findOne({ email: data.email });
 
     if (existingUser) {
-      throw new ConflictException('Email already used');
+      throw new ConflictException('Email already used'); // erreur 409 Conflict
     }
 
     const createdUser = await this.userModel.create(data);
