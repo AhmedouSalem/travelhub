@@ -1,10 +1,9 @@
+/**
+ * createParamDecorator : créer un décorateur personnalisé pour les paramètres de méthode
+ * ExecutionContext : accéder au contexte d’exécution de la requête
+ */
 import { createParamDecorator, ExecutionContext } from "@nestjs/common";
-
-export type AuthenticatedUser = {
-    id: string;
-    email: string;
-    role: string;
-};
+import { AuthenticatedUser } from "../strategies/jwt.strategy";
 
 export const CurrentUser = createParamDecorator(
     (_data: unknown, context: ExecutionContext): AuthenticatedUser => {
