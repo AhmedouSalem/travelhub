@@ -98,28 +98,3 @@ Les visiteurs non connectés peuvent consulter le catalogue, voir le détail d'u
 - `ADMIN` : utilisateur connecté avec droits de gestion du catalogue.
 
 Dans le backend, `VISITOR` n'est pas stocké en base. L'absence de JWT correspond à un visiteur.
-
-## Données de démonstration
-
-Le backend contient un script de seed pour créer des comptes de test et des services dans le catalogue.
-
-Depuis le dossier `backend` :
-
-```bash
-npm run seed
-```
-
-Comptes créés :
-
-```text
-ADMIN
-email: admin@travelhub.local
-password: Admin123
-
-USER
-email: user@travelhub.local
-password: User123
-```
-
-Le seed ajoute aussi quelques services dans le catalogue : repas, film, journal et activité.
-
