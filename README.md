@@ -85,6 +85,7 @@ DELETE /catalog/:id    ADMIN seulement
 POST   /bookings             USER connecté
 GET    /bookings/me          USER connecté
 PATCH  /bookings/:id/cancel  USER connecté
+GET    /bookings             ADMIN seulement
 ```
 
 ## Accès visiteur

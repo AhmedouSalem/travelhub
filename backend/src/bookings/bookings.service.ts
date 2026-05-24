@@ -89,4 +89,13 @@ export class BookingsService {
 
         return booking.populate('catalogItemId');
     }
+
+    async findAllForAdmin() {
+        return this.bookingModel
+            .find()
+            .populate('userId', 'firstName lastName email role')
+            .populate('catalogItemId')
+            .sort({ createdAt: -1 })
+            .exec();
+    }
 }

@@ -5,13 +5,16 @@ import { BookingsService } from './bookings.service';
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import type { AuthenticatedUser } from '../auth/strategies/jwt.strategy';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { UserRole } from '../users/schemas/user.schema';
+import { Roles } from '../auth/decorators/roles.decorator';
 
 @ApiTags('Bookings')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('bookings')
 export class BookingsController {
-  constructor(private readonly bookingsService: BookingsService) {}
+  constructor(private readonly bookingsService: BookingsService) { }
 
   @Post()
   @ApiOperation({ summary: 'Create a booking for the current user' })
@@ -26,6 +29,14 @@ export class BookingsController {
   @ApiOperation({ summary: 'Get current user booking history' })
   findMyBookings(@CurrentUser() user: AuthenticatedUser) {
     return this.bookingsService.findMyBookings(user);
+  }
+
+  @Get()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
+  @ApiOperation({ summary: 'Get all bookings - ADMIN only' })
+  findAllForAdmin() {
+    return this.bookingsService.findAllForAdmin();
   }
 
   @Patch(':id/cancel')

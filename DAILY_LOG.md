@@ -137,11 +137,12 @@
 - Ajout de l'historique utilisateur avec `GET /bookings/me`
 - Ajout de l'annulation d'une réservation
 - Protection des routes de réservation avec JWT
+- Ajout d'une route admin `GET /bookings` pour consulter toutes les réservations
+- Protection de cette route avec `JwtAuthGuard`, `RolesGuard` et le rôle `ADMIN`
 
 ### Ce qui reste à faire
-- Ajouter des tests API sur Auth, Catalog et Bookings
-- Ajouter éventuellement une route admin pour consulter toutes les réservations
 - Préparer le frontend React
+- Ajouter des tests API sur Auth, Catalog et Bookings
 - Préparer les pipelines Jenkins et GitHub Actions
 
 ### Décision technique
