@@ -83,3 +83,26 @@
 - Les routes publiques restent `register` et `login`
 - Les futures routes sensibles utiliseront `JwtAuthGuard`
 - Le payload JWT contient `sub`, `email` et `role`
+
+## Jour 5 - Catalogue public TravelHub
+
+### Ce qui fonctionne
+- Création du module `Catalog`
+- Création du schéma MongoDB `CatalogItem`
+- Ajout des catégories `FILM`, `NEWSPAPER`, `MEAL`, `ACTIVITY`
+- Ajout de la liste publique des services disponibles
+- Ajout du détail public d'un service
+- Ajout de la recherche par titre ou description
+- Ajout du filtre par catégorie
+- Ajout des routes de création, modification et suppression protégées temporairement par JWT
+
+### Ce qui reste à faire
+- Ajouter un système de rôles avec `RolesGuard`
+- Restreindre la création, modification et suppression aux administrateurs
+- Ajouter le panier ou les réservations utilisateur
+- Ajouter les tests API
+
+### Décision technique
+- Le rôle `VISITOR` correspond à un utilisateur non connecté
+- Les routes publiques du catalogue ne nécessitent pas de JWT
+- Les routes d'administration seront sécurisées avec le rôle `ADMIN`

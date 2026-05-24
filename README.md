@@ -58,3 +58,27 @@ README.md
 DAILY_LOG.md
 ```
 
+## Endpoints principaux
+
+### Auth
+
+```text
+POST /auth/register
+POST /auth/login
+GET  /auth/profile
+```
+
+### Catalog
+
+```text
+GET    /catalog
+GET    /catalog/categories
+GET    /catalog/:id
+POST   /catalog        JWT requis, ADMIN prévu ensuite
+PATCH  /catalog/:id    JWT requis, ADMIN prévu ensuite
+DELETE /catalog/:id    JWT requis, ADMIN prévu ensuite
+```
+
+### Accès visiteur
+
+Les visiteurs non connectés peuvent consulter le catalogue, voir le détail d'un service, rechercher et filtrer par catégorie.
