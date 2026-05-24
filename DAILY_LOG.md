@@ -106,3 +106,23 @@
 - Le rôle `VISITOR` correspond à un utilisateur non connecté
 - Les routes publiques du catalogue ne nécessitent pas de JWT
 - Les routes d'administration seront sécurisées avec le rôle `ADMIN`
+
+## Jour 6 - Sécurisation des routes admin
+
+### Ce qui fonctionne
+- Création du décorateur `@Roles`
+- Création du `RolesGuard`
+- Protection des routes `POST /catalog`, `PATCH /catalog/:id` et `DELETE /catalog/:id`
+- Accès public conservé pour la consultation du catalogue
+- Distinction claire entre visiteur, utilisateur connecté et administrateur
+
+### Ce qui reste à faire
+- Ajouter une route ou un seed pour créer un administrateur plus proprement
+- Ajouter le panier ou les réservations utilisateur
+- Ajouter les premiers tests API
+- Préparer les pipelines CI
+
+### Décision technique
+- `VISITOR` n'est pas stocké en base : c'est l'état d'un utilisateur non connecté
+- `USER` et `ADMIN` sont stockés en base dans le document utilisateur
+- Les routes d'administration nécessitent à la fois un JWT valide et le rôle `ADMIN`

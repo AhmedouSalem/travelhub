@@ -74,11 +74,19 @@ GET  /auth/profile
 GET    /catalog
 GET    /catalog/categories
 GET    /catalog/:id
-POST   /catalog        JWT requis, ADMIN prévu ensuite
-PATCH  /catalog/:id    JWT requis, ADMIN prévu ensuite
-DELETE /catalog/:id    JWT requis, ADMIN prévu ensuite
+POST   /catalog        ADMIN seulement
+PATCH  /catalog/:id    ADMIN seulement
+DELETE /catalog/:id    ADMIN seulement
 ```
 
-### Accès visiteur
+## Accès visiteur
 
 Les visiteurs non connectés peuvent consulter le catalogue, voir le détail d'un service, rechercher et filtrer par catégorie.
+
+## Gestion des rôles
+
+- `VISITOR` : utilisateur non connecté, peut consulter le catalogue public.
+- `USER` : utilisateur connecté, pourra réserver et consulter son historique.
+- `ADMIN` : utilisateur connecté avec droits de gestion du catalogue.
+
+Dans le backend, `VISITOR` n'est pas stocké en base. L'absence de JWT correspond à un visiteur.

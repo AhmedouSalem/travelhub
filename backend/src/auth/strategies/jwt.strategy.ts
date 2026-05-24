@@ -21,7 +21,7 @@ import { UserRole } from "../../users/schemas/user.schema";
 export type JwtPayload = {
     sub: string;
     email: string;
-    role: string;
+    role: UserRole;
 }
 
 export type AuthenticatedUser = {
@@ -58,7 +58,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {// Par défaut, cet
         return {
             id: payload.sub,
             email: payload.email,
-            role: payload.role as UserRole,
+            role: payload.role,
         };
     }
 }

@@ -5,6 +5,9 @@ import { CatalogQueryDto } from './dto/catalog-query.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateCatalogItemDto } from './dto/create-catalog-item.dto';
 import { UpdateCatalogItemDto } from './dto/update-catalog-item.dto';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { UserRole } from '../users/schemas/user.schema';
 
 @ApiTags('Catalog')
 @Controller('catalog')
@@ -33,7 +36,8 @@ export class CatalogController {
   }
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
   @ApiBearerAuth()
   @ApiOperation({ 
     summary: 'Create catalog item - temporarily protected by JWT'
@@ -43,7 +47,8 @@ export class CatalogController {
   }
 
   @Patch(':id')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
   @ApiBearerAuth()
   @ApiOperation({
     summary: 'Update catalog item - temporarily protected by JWT',
@@ -56,7 +61,8 @@ export class CatalogController {
   }
 
   @Delete(':id')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
   @ApiBearerAuth()
   @ApiOperation({
     summary: 'Delete catalog item - temporarily protected by JWT',
