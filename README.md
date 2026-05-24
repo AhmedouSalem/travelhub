@@ -79,6 +79,14 @@ PATCH  /catalog/:id    ADMIN seulement
 DELETE /catalog/:id    ADMIN seulement
 ```
 
+### Bookings
+
+```text
+POST   /bookings             USER connecté
+GET    /bookings/me          USER connecté
+PATCH  /bookings/:id/cancel  USER connecté
+```
+
 ## Accès visiteur
 
 Les visiteurs non connectés peuvent consulter le catalogue, voir le détail d'un service, rechercher et filtrer par catégorie.

@@ -126,3 +126,26 @@
 - `VISITOR` n'est pas stocké en base : c'est l'état d'un utilisateur non connecté
 - `USER` et `ADMIN` sont stockés en base dans le document utilisateur
 - Les routes d'administration nécessitent à la fois un JWT valide et le rôle `ADMIN`
+
+## Jour 7 - Réservations utilisateur
+
+### Ce qui fonctionne
+- Création du module `Bookings`
+- Création du schéma MongoDB `Booking`
+- Ajout de la réservation d'un service du catalogue
+- Calcul automatique du prix total selon la quantité
+- Ajout de l'historique utilisateur avec `GET /bookings/me`
+- Ajout de l'annulation d'une réservation
+- Protection des routes de réservation avec JWT
+
+### Ce qui reste à faire
+- Ajouter des tests API sur Auth, Catalog et Bookings
+- Ajouter éventuellement une route admin pour consulter toutes les réservations
+- Préparer le frontend React
+- Préparer les pipelines Jenkins et GitHub Actions
+
+### Décision technique
+- Une réservation appartient toujours à l'utilisateur connecté
+- Un utilisateur ne peut voir et annuler que ses propres réservations
+- Les services indisponibles ne peuvent pas être réservés
+
