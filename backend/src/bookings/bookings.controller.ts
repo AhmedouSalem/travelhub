@@ -32,7 +32,7 @@ export class BookingsController {
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  @UseGuards(RolesGuard)
   @Roles(UserRole.ADMIN)
   @ApiOperation({ summary: 'Get all bookings - ADMIN only' })
   findAllForAdmin() {

@@ -66,7 +66,7 @@ export class BookingsService {
 
     async cancel(user: AuthenticatedUser, id: string) {
         if (!Types.ObjectId.isValid(id)) {
-            throw new NotFoundException('Booking not found');
+            throw new BadRequestException('Invalid booking id');
         }
 
         const booking = await this.bookingModel
