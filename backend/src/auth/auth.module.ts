@@ -21,7 +21,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'), // JWT_SECRET : sert à signer les tokens JWT. le secret permet de vérifier que le token n’a pas été modifié.
         signOptions: {
-          expiresIn: '3m'
+          expiresIn: '30d'
         }
       })
     })
