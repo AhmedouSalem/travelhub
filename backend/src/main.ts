@@ -36,7 +36,7 @@ async function bootstrap() {
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
 
-  console.log(`TravelHub API running on http://localhost:${port}`);
-  console.log(`Swagger available on http://localhost:${port}/api/docs`);
+  console.log(`TravelHub API running on http://localhost:${app.getUrl()}`);
+  console.log(`Swagger available on http://localhost:${app.getUrl()}/api/docs`);
 }
 bootstrap();
