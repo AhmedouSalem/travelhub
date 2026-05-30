@@ -150,3 +150,33 @@
 - Un utilisateur ne peut voir et annuler que ses propres réservations
 - Les services indisponibles ne peuvent pas être réservés
 
+## Jour 8 - Socle frontend React et authentification
+
+### Ce qui fonctionne
+
+* Installation de `react-router-dom` et `axios` dans le frontend React
+* Mise en place de la variable d'environnement `VITE_API_BASE_URL` pour communiquer avec le backend déployé
+* Création du client Axios centralisé avec ajout automatique du token JWT dans les requêtes protégées
+* Définition des types TypeScript liés à l'authentification : `AuthUser`, `LoginPayload`, `RegisterPayload` et `LoginResponse`
+* Création de `authApi` pour les appels `register`, `login` et `profile`
+* Mise en place de `AuthContext` pour conserver l'utilisateur connecté et le token JWT
+* Création du hook `useAuth`
+* Mise en place des routes publiques, utilisateur et administrateur avec React Router
+* Protection des routes `/my-bookings` et `/admin/*` selon l'état d'authentification et le rôle utilisateur
+* Création des premières pages temporaires afin de valider la navigation
+
+### Ce qui reste à faire
+
+* Implémenter le design public issu de la maquette Visily
+* Afficher le catalogue réel depuis l'API avec `GET /catalog`
+* Afficher le détail d'un service avec `GET /catalog/:id`
+* Connecter les formulaires Login et Register au backend
+* Implémenter le parcours de réservation utilisateur
+* Développer ensuite les écrans administrateur
+
+### Décision technique
+
+* Utilisation d'une architecture frontend organisée par fonctionnalités : `auth`, `catalog`, `bookings` et `admin`
+* Centralisation des appels HTTP avec Axios afin de gérer automatiquement l'envoi du JWT
+* Stockage du token dans `localStorage` pour restaurer la session utilisateur au rechargement
+* Développement progressif du frontend : socle technique, parcours public, authentification, réservations, puis administration
