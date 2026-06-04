@@ -1,0 +1,115 @@
+.public-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--color-background);
+}
+
+.public-navbar {
+  height: 66px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.public-navbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 64px;
+}
+
+.public-navbar__left,
+.public-navbar__actions {
+  display: flex;
+  align-items: center;
+}
+
+.public-navbar__left {
+  gap: 38px;
+}
+
+.public-navbar__actions {
+  gap: 22px;
+}
+
+.public-navbar__logo {
+  color: var(--color-primary);
+  font-size: 21px;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+.public-navbar__link,
+.public-navbar__login {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.public-navbar__link:hover,
+.public-navbar__login:hover,
+.public-navbar__link--active {
+  color: var(--color-primary);
+}
+
+.public-navbar__register {
+  padding: 10px 19px;
+  color: #ffffff;
+  background: var(--color-primary);
+  border-radius: 6px;
+  box-shadow: var(--shadow-button);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.public-navbar__register:hover {
+  background: var(--color-primary-dark);
+}
+
+.public-footer {
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  background: #ffffff;
+}
+
+.public-footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 27px 64px;
+  font-size: 13px;
+}
+
+.public-footer__links {
+  display: flex;
+  gap: 26px;
+}
+
+@media (max-width: 768px) {
+  .public-navbar__container,
+  .public-footer__container {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .public-navbar__left {
+    gap: 18px;
+  }
+
+  .public-navbar__actions {
+    gap: 12px;
+  }
+
+  .public-footer__container {
+    flex-direction: column;
+    gap: 14px;
+    text-align: center;
+  }
+}

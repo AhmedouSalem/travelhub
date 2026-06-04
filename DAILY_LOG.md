@@ -208,3 +208,31 @@
 * Application de la démarche recommandée par React : construire d'abord une version statique fidèle à la maquette avant d'ajouter les états et les appels API
 * Utilisation d'un composant `CatalogCard` réutilisable alimenté par des `props`
 * Conservation d'un modèle de données compatible avec l'API NestJS pour faciliter le remplacement ultérieur des données fictives par les réponses backend
+
+## Jour 10 - Finalisation de la page publique statique du catalogue
+
+### Ce qui fonctionne
+
+* Création de la barre de navigation publique avec le logo TravelHub, le lien Catalog et les accès Login / Register
+* Création de la section hero avec le message principal de la plateforme et la barre de recherche visuelle
+* Création des filtres de catégories affichés sous forme de boutons : All, Meals, Films, Newspapers et Activities
+* Création du footer public
+* Assemblage complet de la page `CatalogPage` à partir de composants React réutilisables
+* Intégration cohérente de la navbar, du hero, des filtres, de la grille de cartes et du footer
+* Adaptation responsive de la page publique complète
+* Vérification visuelle de l'affichage sur téléphone, format intermédiaire, tablette et ordinateur
+
+### Ce qui reste à faire
+
+* Rendre la barre de recherche interactive avec React
+* Rendre les filtres de catégories interactifs
+* Afficher un état vide lorsqu'aucun service ne correspond à la recherche ou au filtre
+* Implémenter la page statique de détail d'un service
+* Remplacer ensuite les données fictives par les données réelles de l'API backend
+* Connecter plus tard l'authentification et le parcours de réservation utilisateur
+
+### Décision technique
+
+* Conservation d'une version statique fondée sur `mockCatalog` afin de stabiliser l'interface avant de gérer les interactions et les appels API
+* Découpage de la page en composants réutilisables : `PublicNavbar`, `HeroSection`, `CategoryFilters`, `CatalogCard` et `PublicFooter`
+* Séparation entre la composition visuelle de la page et les futures logiques d'état React pour faciliter l'apprentissage et la maintenance
