@@ -1,0 +1,116 @@
+.catalog-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 420px;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+}
+
+.catalog-card__image-container {
+    position: relative;
+    height: 188px;
+    overflow: hidden;
+    background: var(--color-background-soft);
+}
+
+.catalog-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.catalog-card__category {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    color: #232834;
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.catalog-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 18px 20px 16px;
+}
+
+.catalog-card__title {
+    margin-bottom: 8px;
+    color: var(--color-text);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.catalog-card__description {
+    display: -webkit-box;
+    overflow: hidden;
+    min-height: 48px;
+    margin-bottom: 16px;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    line-height: 1.45;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+
+.catalog-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-border);
+}
+
+.catalog-card__price {
+    margin-bottom: 3px;
+    color: var(--color-text);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.catalog-card__availability {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.catalog-card__availability--available {
+    color: var(--color-success);
+}
+
+.catalog-card__availability--sold-out {
+    color: var(--color-danger);
+}
+
+.catalog-card__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    color: #ffffff;
+    background: var(--color-primary);
+    border-radius: var(--radius-button);
+    box-shadow: var(--shadow-button);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.catalog-card__button:hover {
+    background-color: var(--color-primary-dark);
+}

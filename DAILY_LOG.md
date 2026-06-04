@@ -180,3 +180,31 @@
 * Centralisation des appels HTTP avec Axios afin de gérer automatiquement l'envoi du JWT
 * Stockage du token dans `localStorage` pour restaurer la session utilisateur au rechargement
 * Développement progressif du frontend : socle technique, parcours public, authentification, réservations, puis administration
+
+## Jour 9 - Première implémentation statique du catalogue public
+
+### Ce qui fonctionne
+
+* Création des types TypeScript du catalogue avec `CatalogItem` et `CatalogCategory`
+* Création d'un jeu de données statique `mockCatalog` aligné avec la structure du backend
+* Import des images de la maquette Visily dans `frontend/public/images`
+* Adaptation des styles globaux pour préparer l'identité visuelle claire de TravelHub
+* Implémentation du composant réutilisable `CatalogCard`
+* Affichage statique des services avec `map()` et transmission des données par `props`
+* Mise en place d'une grille responsive pour les cartes du catalogue
+* Vérification de l'affichage sur téléphone, format intermédiaire, tablette et ordinateur
+
+### Ce qui reste à faire
+
+* Ajouter la navbar publique
+* Ajouter la section hero avec la barre de recherche visuelle
+* Ajouter les filtres de catégories statiques
+* Ajouter le footer public
+* Rendre ensuite la recherche et les filtres interactifs avec React
+* Connecter enfin le catalogue réel à l'API backend
+
+### Décision technique
+
+* Application de la démarche recommandée par React : construire d'abord une version statique fidèle à la maquette avant d'ajouter les états et les appels API
+* Utilisation d'un composant `CatalogCard` réutilisable alimenté par des `props`
+* Conservation d'un modèle de données compatible avec l'API NestJS pour faciliter le remplacement ultérieur des données fictives par les réponses backend
