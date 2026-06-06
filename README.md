@@ -2,6 +2,21 @@
 
 TravelHub est une application fullstack NestJS / React simulant une plateforme de services passagers : catalogue, recherche, réservation, historique utilisateur et espace administrateur.
 
+# Démonstration en ligne
+## Frontend React
+
+Interface publique actuellement déployée sur Render :
+
+https://travelhub-frontend.onrender.com/
+
+## Backend NestJS / Documentation API
+
+Documentation Swagger du backend déployé :
+
+https://travelhub-3til.onrender.com/api/docs
+
+Les services hébergés sur Render peuvent nécessiter quelques secondes de chargement lors du premier accès après une période d'inactivité.
+
 ## Stack prévue
 
 - Backend : NestJS, Node.js, TypeScript, MongoDB, Mongoose, JWT, Swagger

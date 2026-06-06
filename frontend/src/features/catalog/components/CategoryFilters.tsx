@@ -1,4 +1,5 @@
 import type { CatalogCategory } from "../../../types/catalog";
+import "./CategoryFilters.css";
 
 type CategoryFilter = "ALL" | CatalogCategory;
 
