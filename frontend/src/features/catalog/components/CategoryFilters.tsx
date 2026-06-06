@@ -1,11 +1,16 @@
 import type { CatalogCategory } from "../../../types/catalog";
 import "./CategoryFilters.css";
 
-type CategoryFilter = "ALL" | CatalogCategory;
+export type CategoryFilter = "ALL" | CatalogCategory;
 
 type FilterOption = {
   label: string;
   value: CategoryFilter;
+};
+
+type CategoryFilterProps = {
+  activeCategory: CategoryFilter;
+  onCategoryChange: (category: CategoryFilter) => void;
 };
 
 const filterOptions: FilterOption[] = [
@@ -16,11 +21,15 @@ const filterOptions: FilterOption[] = [
   { label: "Activities", value: "ACTIVITY" },
 ];
 
-export function CategoryFilters() {
-  const activeCategory: CategoryFilter = "ALL";
-
+export function CategoryFilters({
+  activeCategory,
+  onCategoryChange,
+}: CategoryFilterProps) {
   return (
-    <div className="category-filters" aria-label="Catalog categories">
+    <div
+      className="category-filters"
+      aria-label="Catalog categories"
+    >
       {filterOptions.map((filter) => (
         <button
           aria-pressed={filter.value === activeCategory}
@@ -28,6 +37,7 @@ export function CategoryFilters() {
             filter.value === activeCategory ? "category-filter--active" : ""
           }`}
           key={filter.value}
+          onClick={() => onCategoryChange(filter.value)}
           type="button"
         >
           {filter.label}

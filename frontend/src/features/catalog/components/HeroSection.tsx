@@ -1,6 +1,11 @@
 import "./HeroSection.css";
 
-export function HeroSection() {
+type HeroSectionProps = {
+  searchQuery: string;
+  onSearchChange: (value: string) => void;
+};
+
+export function HeroSection({ searchQuery, onSearchChange }: HeroSectionProps) {
   return (
     <section className="hero-section">
       <div className="hero-section__content">
@@ -35,9 +40,12 @@ export function HeroSection() {
           </svg>
 
           <input
+            aria-label="Search catalog services"
             className="hero-search__input"
+            onChange={(event) => onSearchChange(event.target.value)}
             placeholder="Search for 'documentary' or 'breakfast'..."
             type="search"
+            value={searchQuery}
           />
         </label>
       </div>
