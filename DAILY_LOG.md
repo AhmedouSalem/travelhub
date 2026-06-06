@@ -236,3 +236,30 @@
 * Conservation d'une version statique fondée sur `mockCatalog` afin de stabiliser l'interface avant de gérer les interactions et les appels API
 * Découpage de la page en composants réutilisables : `PublicNavbar`, `HeroSection`, `CategoryFilters`, `CatalogCard` et `PublicFooter`
 * Séparation entre la composition visuelle de la page et les futures logiques d'état React pour faciliter l'apprentissage et la maintenance
+
+## Jour 11 - Interactions de recherche et filtres du catalogue public
+
+### Ce qui fonctionne
+
+* Ajout d'un état React pour contrôler la recherche du catalogue
+* Transformation de la barre de recherche du hero en champ contrôlé
+* Ajout d'un état React pour gérer la catégorie active
+* Rendu interactif des filtres : All, Meals, Films, Newspapers et Activities
+* Filtrage combiné par catégorie et par texte saisi
+* Recherche dans le titre et la description des services
+* Affichage du nombre de services trouvés
+* Ajout d'un état vide lorsqu'aucun service ne correspond aux critères
+* Ajout d'un bouton pour réinitialiser la recherche et les filtres
+
+### Ce qui reste à faire
+
+* Implémenter la page statique de détail d'un service
+* Rendre le bouton Details fonctionnel avec React Router
+* Remplacer ensuite les données fictives par les données réelles de l'API backend
+* Connecter plus tard l'authentification et le parcours de réservation utilisateur
+
+### Décision technique
+
+* Conservation temporaire de `mockCatalog` pour travailler d'abord les interactions frontend
+* Centralisation de l'état de recherche et de catégorie dans `CatalogPage`
+* Utilisation de `useMemo` pour calculer la liste filtrée à partir de l'état React
