@@ -263,3 +263,36 @@
 * Conservation temporaire de `mockCatalog` pour travailler d'abord les interactions frontend
 * Centralisation de l'état de recherche et de catégorie dans `CatalogPage`
 * Utilisation de `useMemo` pour calculer la liste filtrée à partir de l'état React
+
+## Jour 12 - Page détail statique d'un service
+
+### Ce qui fonctionne
+
+* Création de la page détail statique d'un service du catalogue
+* Ajout de la route dynamique `/catalog/:id`
+* Récupération temporaire du service depuis `mockCatalog` à partir de l'identifiant présent dans l'URL
+* Transformation du bouton `View details` des cartes catalogue en lien vers la page détail
+* Ajout d'un fil d'Ariane pour revenir visuellement au catalogue et à la catégorie du service
+* Affichage des informations principales du service : catégorie, titre, image, description, prix et disponibilité
+* Ajout d'un panneau de réservation statique côté visiteur avec le bouton `Login to book`
+* Ajout d'une section `What's included`
+* Ajout d'une section d'informations complémentaires selon le service
+* Ajout d'une section `Recommended for you` avec des services statiques issus du catalogue fictif
+* Ajout d'un état `Service not found` lorsqu'un identifiant inconnu est utilisé dans l'URL
+* Vérification visuelle de la page détail sur desktop et mobile
+
+### Ce qui reste à faire
+
+* Connecter la page détail à l'API backend avec `GET /catalog/:id`
+* Adapter le panneau de réservation selon l'état d'authentification de l'utilisateur
+* Ajouter le sélecteur de quantité pour les utilisateurs connectés
+* Connecter le bouton `Book now` au backend
+* Implémenter ensuite la page `My bookings`
+* Connecter plus tard les recommandations à une vraie logique applicative
+
+### Décision technique
+
+* Conservation de `mockCatalog` pour finaliser d'abord la structure statique de la page détail
+* Découpage de la page en composants réutilisables afin de respecter l'approche React
+* Non-implémentation du bloc `DEMO MODE / Visitor / User`, car il s'agissait d'une annotation Visily et non d'une fonctionnalité réelle
+* Conservation temporaire des recommandations en statique, la vraie recommandation étant prévue pour une version ultérieure

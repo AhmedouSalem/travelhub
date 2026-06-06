@@ -9,7 +9,3 @@ export type CatalogItem = {
     available: boolean;
     imageUrl: string;
 };
-
-export type CatalogCardProps = {
-    item: CatalogItem;
-}

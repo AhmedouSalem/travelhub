@@ -1,5 +1,11 @@
-import type { CatalogCardProps, CatalogCategory } from "../../../types/catalog";
+import { Link } from "react-router-dom";
+import type {CatalogCategory, CatalogItem } from "../../../types/catalog";
+import { formatPrice } from "../utils/formatPrice";
 import "./CatalogCard.css";
+
+type CatalogCardProps = {
+    item: CatalogItem;
+}
 
 const categoryLabels: Record<CatalogCategory, string> = {
     MEAL: "Meals",
@@ -14,14 +20,6 @@ const categoryIcons: Record<CatalogCategory, string> = {
     NEWSPAPER: "▤",
     ACTIVITY: "✧",
 };
-
-function formatPrice(price: number): string {
-    if (price === 0) {
-        return "Free";
-    }
-
-    return `$${price.toFixed(2)}`;
-}
 
 export function CatalogCard({ item } : CatalogCardProps) {
     return (
@@ -58,10 +56,10 @@ export function CatalogCard({ item } : CatalogCardProps) {
                         </p>
                     </div>
 
-                    <button className="catalog-card__button" type="button">
+                    <Link className="catalog-card__button" to={`/catalog/${item.id}`}>
                         Details
                         <span aria-hidden="true">›</span>
-                    </button>
+                    </Link>
                 </div>
             </div>
         </article>

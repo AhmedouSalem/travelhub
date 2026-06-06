@@ -9,6 +9,7 @@ export function PublicFooter() {
         <nav className="public-footer__links" aria-label="Legal links">
           <span>Terms of Service</span>
           <span>Privacy Policy</span>
+          <span>Contact Support</span>
         </nav>
       </div>
     </footer>

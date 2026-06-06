@@ -1,0 +1,24 @@
+.service-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 46px;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+}
+
+.service-breadcrumb a:hover {
+    color: var(--color-primary);
+}
+
+.service-breadcrumb strong {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .service-breadcrumb {
+        margin-bottom: 32px;
+    }
+}

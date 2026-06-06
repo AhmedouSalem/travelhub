@@ -7,7 +7,7 @@ import {
 } from "../components/CategoryFilters";
 import { HeroSection } from "../components/HeroSection";
 import { mockCatalog } from "../data/mockCatalog";
-import "../catalog.css";
+import "./catalog.css";
 import { useMemo, useState } from "react";
 
 export function CatalogPage() {
