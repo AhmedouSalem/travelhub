@@ -19,7 +19,7 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'https://travelhub-frontend.onrender.com'],
     credentials: true, // option autorise l’envoi de credentials : cookies, headers d'auth, info de session.
   });
 
