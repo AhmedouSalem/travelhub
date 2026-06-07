@@ -1,5 +1,9 @@
 import type { CatalogCategory } from "../../../types/catalog";
 import "./CategoryFilters.css";
+import {
+  catalogCategoryOrder,
+  categoryLabels,
+} from "../constants/catalogCategories";
 
 export type CategoryFilter = "ALL" | CatalogCategory;
 
@@ -15,10 +19,10 @@ type CategoryFilterProps = {
 
 const filterOptions: FilterOption[] = [
   { label: "All", value: "ALL" },
-  { label: "Meals", value: "MEAL" },
-  { label: "Films", value: "FILM" },
-  { label: "Newspapers", value: "NEWSPAPER" },
-  { label: "Activities", value: "ACTIVITY" },
+  ...catalogCategoryOrder.map((category) => ({
+    label: categoryLabels[category],
+    value: category,
+  })),
 ];
 
 export function CategoryFilters({
@@ -26,10 +30,7 @@ export function CategoryFilters({
   onCategoryChange,
 }: CategoryFilterProps) {
   return (
-    <div
-      className="category-filters"
-      aria-label="Catalog categories"
-    >
+    <div className="category-filters" aria-label="Catalog categories">
       {filterOptions.map((filter) => (
         <button
           aria-pressed={filter.value === activeCategory}

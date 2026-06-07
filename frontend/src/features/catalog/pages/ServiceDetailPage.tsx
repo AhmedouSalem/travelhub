@@ -1,12 +1,14 @@
 import { Link, useParams } from "react-router-dom";
-import type { CatalogCategory, CatalogItem } from "../../../types/catalog";
-import { mockCatalog } from "../data/mockCatalog";
+import type { CatalogItem } from "../../../types/catalog";
+import { categoryLabels } from "../constants/catalogCategories";
 import { PublicNavbar } from "../../../components/layout/PublicNavbar";
 import { PublicFooter } from "../../../components/layout/PublicFooter";
 import { ServiceBreadcrumb } from "../components/details/ServiceBreadcrumb";
 import { ServiceBookingPanel } from "../components/details/ServiceBookingPanel";
 import { RecommendedServices } from "../components/details/RecommendedServices";
 import "./ServiceDetailPage.css";
+import { useEffect, useState } from "react";
+import { catalogApi } from "../../../api/catalogApi";
 
 type ServiceDetailContent = {
   prepTime: string;
@@ -14,13 +16,6 @@ type ServiceDetailContent = {
   about: string;
   included: string[];
   dietaryTags: string[];
-};
-
-const categoryLabels: Record<CatalogCategory, string> = {
-  MEAL: "Meals",
-  FILM: "Films",
-  NEWSPAPER: "Newspapers",
-  ACTIVITY: "Activities",
 };
 
 const detailContentById: Record<string, ServiceDetailContent> = {
@@ -58,16 +53,83 @@ function getDefaultDetailContent(item: CatalogItem): ServiceDetailContent {
 export function ServiceDetailPage() {
   const { id } = useParams<{ id: string }>();
 
-  const service = mockCatalog.find((item) => item.id === id);
+  const [service, setService] = useState<CatalogItem | null>(null);
+  const [recommendedServices, setRecommendedServices] = useState<CatalogItem[]>(
+    [],
+  );
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  if (!service) {
+  useEffect(() => {
+    if (!id) {
+      setErrorMessage("Missing service identifier");
+      setIsLoading(false);
+      return;
+    }
+
+    let ignore = false;
+
+    async function loadServiceDetail(id: string) {
+      try {
+        setIsLoading(true);
+        setErrorMessage(null);
+
+        const [serviceData, catalogData] = await Promise.all([
+          catalogApi.getCatalogItem(id),
+          catalogApi.getCatalog(),
+        ]);
+
+        if (!ignore) {
+          setService(serviceData);
+          setRecommendedServices(
+            catalogData
+              .filter((item) => item.id !== serviceData.id)
+              .slice(0, 3),
+          );
+        }
+      } catch {
+        if (!ignore) {
+          setErrorMessage(
+            "The service you are looking for could not be loaded.",
+          );
+        }
+      } finally {
+        if (!ignore) {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    loadServiceDetail(id);
+
+    return () => {
+      ignore = true;
+    };
+  }, [id]);
+
+  if (isLoading) {
+    return (
+      <div className="public-page">
+        <PublicNavbar />
+
+        <main className="service-detail-not-found">
+          <h1>Loading service...</h1>
+          <p>TravelHub is loading the selected passenger service.</p>
+        </main>
+
+        <PublicFooter />
+      </div>
+    );
+  }
+
+  if (errorMessage || !service) {
     return (
       <div className="public-page">
         <PublicNavbar />
 
         <main className="service-detail-not-found">
           <h1>Service not found</h1>
-          <p>The service you are looking for does not exist in the catalog.</p>
+          <p>{errorMessage ?? "This service does not exist in the catalog."}</p>
 
           <Link className="service-detail-not-found__link" to="/">
             Back to catalog
@@ -83,9 +145,9 @@ export function ServiceDetailPage() {
   const detailContent =
     detailContentById[service.id] ?? getDefaultDetailContent(service);
 
-  const recommendedServices = mockCatalog
-    .filter((item) => item.id !== service.id)
-    .slice(0, 3);
+  // const recommendedServices = mockCatalog
+  //   .filter((item) => item.id !== service.id)
+  //   .slice(0, 3);
 
   return (
     <div className="public-page">

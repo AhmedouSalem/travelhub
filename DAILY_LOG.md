@@ -296,3 +296,41 @@
 * Découpage de la page en composants réutilisables afin de respecter l'approche React
 * Non-implémentation du bloc `DEMO MODE / Visitor / User`, car il s'agissait d'une annotation Visily et non d'une fonctionnalité réelle
 * Conservation temporaire des recommandations en statique, la vraie recommandation étant prévue pour une version ultérieure
+
+## Jour 13 - Connexion du catalogue public à l'API backend
+
+### Ce qui fonctionne
+
+* Création d'une API frontend dédiée au catalogue pour centraliser les appels HTTP
+* Connexion de la page catalogue publique à l'endpoint backend `GET /catalog`
+* Connexion de la page détail à l'endpoint backend `GET /catalog/:id`
+* Mapping des données backend MongoDB vers le modèle frontend React
+* Transformation de `_id` en `id` afin de conserver une structure propre côté frontend
+* Conservation des types métier du catalogue dans `src/types/catalog.ts`
+* Envoi des filtres de catégorie vers le backend
+* Envoi de la recherche texte vers le backend
+* Ajout d'un état de chargement pendant la récupération du catalogue
+* Ajout d'un état d'erreur si le catalogue ne peut pas être chargé
+* Conservation de l'état vide lorsqu'aucun service ne correspond aux critères
+* Ajout d'un fallback local pour les images lorsque l'API renvoie une URL d'exemple
+* Affichage des détails réels d'un service à partir de son identifiant MongoDB
+* Conservation temporaire des recommandations simples à partir des autres services du catalogue
+* Vérification visuelle du catalogue, des filtres, de la recherche et de la page détail
+
+### Ce qui reste à faire
+
+* Implémenter statiquement la page Login selon la maquette Visily
+* Implémenter statiquement la page Register selon la maquette Visily
+* Implémenter statiquement la page My Bookings pour l'utilisateur connecté
+* Connecter ensuite les formulaires Login et Register au backend
+* Connecter le parcours de réservation utilisateur depuis la page détail
+* Connecter la page My Bookings à l'API backend
+* Implémenter plus tard les pages administrateur : Dashboard, Manage Catalog et Admin Bookings
+
+### Décision technique
+
+* Passage progressif de `mockCatalog` vers l'API réelle sans casser l'interface existante
+* Conservation d'un modèle frontend propre avec `id`, même si le backend MongoDB renvoie `_id`
+* Utilisation du backend pour la recherche et le filtrage afin de se rapprocher du comportement réel de l'application
+* Conservation des recommandations en logique simple et temporaire, la vraie recommandation étant prévue pour une version ultérieure
+* Priorité donnée aux pages utilisateur publiques et connectées avant les écrans administrateur

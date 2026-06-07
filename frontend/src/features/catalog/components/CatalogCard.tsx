@@ -1,25 +1,12 @@
 import { Link } from "react-router-dom";
-import type {CatalogCategory, CatalogItem } from "../../../types/catalog";
+import type { CatalogItem } from "../../../types/catalog";
+import { categoryIcons, categoryLabels } from "../constants/catalogCategories";
 import { formatPrice } from "../utils/formatPrice";
 import "./CatalogCard.css";
 
 type CatalogCardProps = {
     item: CatalogItem;
 }
-
-const categoryLabels: Record<CatalogCategory, string> = {
-    MEAL: "Meals",
-    FILM: "Films",
-    NEWSPAPER: "Newspapers",
-    ACTIVITY: "Activities",
-};
-
-const categoryIcons: Record<CatalogCategory, string> = {
-    MEAL: "🍴",
-    FILM: "▣",
-    NEWSPAPER: "▤",
-    ACTIVITY: "✧",
-};
 
 export function CatalogCard({ item } : CatalogCardProps) {
     return (

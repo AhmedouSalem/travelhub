@@ -1,36 +1,61 @@
+import { catalogApi } from "../../../api/catalogApi";
 import { PublicFooter } from "../../../components/layout/PublicFooter";
 import { PublicNavbar } from "../../../components/layout/PublicNavbar";
+import type { CatalogItem } from "../../../types/catalog";
 import { CatalogCard } from "../components/CatalogCard";
 import {
   CategoryFilters,
   type CategoryFilter,
 } from "../components/CategoryFilters";
 import { HeroSection } from "../components/HeroSection";
-import { mockCatalog } from "../data/mockCatalog";
 import "./catalog.css";
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function CatalogPage() {
+  const [catalog, setCatalog] = useState<CatalogItem[]>([]);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>("ALL");
 
-  const normalizedSearchQuery = searchQuery.trim().toLowerCase();
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [reloadKey, setReloadKey] = useState(0);
 
-  const filteredCatalog = useMemo(() => {
-    return mockCatalog.filter((item) => {
-      const matchesCategory =
-        activeCategory === "ALL" || item.category === activeCategory;
+  useEffect(() => {
+    let ignore = false;
 
-      const searchableContent =
-        `${item.title} ${item.description}`.toLowerCase();
+    async function loadCatalog() {
+      try {
+        setIsLoading(true);
+        setErrorMessage(null);
 
-      const matchesSearch =
-        normalizedSearchQuery.length === 0 ||
-        searchableContent.includes(normalizedSearchQuery);
+        const data = await catalogApi.getCatalog({
+          category: activeCategory === "ALL" ? undefined : activeCategory,
+          search: searchQuery.trim() || undefined,
+        });
 
-      return matchesCategory && matchesSearch;
-    });
-  }, [activeCategory, normalizedSearchQuery]);
+        if (!ignore) {
+          setCatalog(data);
+        }
+      } catch {
+        if (!ignore) {
+          setErrorMessage(
+            "Unable to load the catalog. Please try again later.",
+          );
+        }
+      } finally {
+        if (!ignore) {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    loadCatalog();
+
+    return () => {
+      ignore = true;
+    };
+  }, [activeCategory, searchQuery, reloadKey]);
 
   const resetFilters = () => {
     setSearchQuery("");
@@ -54,10 +79,12 @@ export function CatalogPage() {
                 Our Catalog
               </h2>
 
-              <p className="catalog-section__results">
-                {filteredCatalog.length}{" "}
-                {filteredCatalog.length > 1 ? "services" : "service"} found
-              </p>
+              {!isLoading && !errorMessage && (
+                <p className="catalog-section__results">
+                  {catalog.length} {catalog.length > 1 ? "services" : "service"}{" "}
+                  found
+                </p>
+              )}
             </div>
 
             <CategoryFilters
@@ -72,13 +99,39 @@ export function CatalogPage() {
             ))}
           </div> */}
 
-          {filteredCatalog.length > 0 ? (
+          {isLoading && (
+            <div className="catalog-status-card">
+              <p className="catalog-status-card__title">Loading catalog...</p>
+              <p className="catalog-status-card__description">
+                TravelHub is loading the available passenger services.
+              </p>
+            </div>
+          )}
+
+          {!isLoading && errorMessage && (
+            <div className="catalog-status-card catalog-status-card-error">
+              <p className="catalog-status-card__title">Catalog unavailable</p>
+              <p className="catalog-status-card__description">{errorMessage}</p>
+
+              <button
+                className="catalog-status-card__button"
+                onClick={() => setReloadKey((current) => current + 1)}
+                type="button"
+              >
+                Try again
+              </button>
+            </div>
+          )}
+
+          {!isLoading && !errorMessage && catalog.length > 0 && (
             <div className="catalog-grid">
-              {filteredCatalog.map((item) => (
+              {catalog.map((item) => (
                 <CatalogCard item={item} key={item.id} />
               ))}
             </div>
-          ) : (
+          )}
+
+          {!isLoading && !errorMessage && catalog.length === 0 && (
             <div className="catalog-empty-state">
               <p className="catalog-empty-state__title">No service found</p>
 
