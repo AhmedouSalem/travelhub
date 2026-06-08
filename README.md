@@ -9,6 +9,18 @@ Interface publique actuellement déployée sur Render :
 
 https://travelhub-frontend.onrender.com/
 
+### Déploiement frontend Render
+
+Le frontend React utilise React Router avec des routes côté client comme `/catalog/:id`.
+
+Pour éviter une erreur lors d'un rafraîchissement direct sur une route dynamique, le service Render Static Site doit définir une règle de rewrite :
+
+```text
+Source Path: /*
+Destination Path: /index.html
+Action: Rewrite
+```
+
 ## Backend NestJS / Documentation API
 
 Documentation Swagger du backend déployé :
