@@ -334,3 +334,35 @@
 * Utilisation du backend pour la recherche et le filtrage afin de se rapprocher du comportement réel de l'application
 * Conservation des recommandations en logique simple et temporaire, la vraie recommandation étant prévue pour une version ultérieure
 * Priorité donnée aux pages utilisateur publiques et connectées avant les écrans administrateur
+
+## Jour 14 - Page Login statique
+
+### Ce qui fonctionne
+
+* Implémentation statique de la page Login selon la maquette Visily
+* Création d'une structure dédiée aux pages d'authentification
+* Création du composant réutilisable `AuthLogo`
+* Création du composant réutilisable `AuthTextField`
+* Création du composant `AuthFeatureCard` pour le panneau visuel de droite
+* Ajout d'un formulaire Login statique avec email, mot de passe, remember me et bouton de connexion
+* Ajout des liens vers le catalogue et vers la page Register
+* Ajout d'une image de fond exportée depuis Visily pour la partie visuelle droite
+* Adaptation responsive de la page Login
+* Masquage de la partie visuelle sur mobile afin de garder une page lisible
+* Validation visuelle de la page Login
+
+### Ce qui reste à faire
+
+* Implémenter statiquement la page Register selon la maquette Visily
+* Connecter ensuite le formulaire Login au backend
+* Gérer les erreurs de connexion
+* Stocker le token JWT après connexion
+* Rediriger l'utilisateur connecté vers le catalogue ou ses réservations
+* Adapter plus tard le panneau de réservation de la page détail selon l'état connecté
+
+### Décision technique
+
+* Construction d'une page statique avant l'ajout de la logique d'authentification
+* Découpage en composants réutilisables pour préparer la page Register
+* Utilisation de l'image exportée depuis Visily plutôt qu'un faux background CSS
+* Conservation d'un formulaire non connecté pour garder une étape claire et maîtrisée
