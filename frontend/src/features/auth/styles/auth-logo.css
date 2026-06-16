@@ -1,0 +1,22 @@
+.auth-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    color: var(--color-primary);
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.auth-logo__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 31px;
+    height: 31px;
+    color: #ffffff;
+    background: var(--color-primary);
+    border-radius: calc(var(--radius-card) / 2 + 1px);
+    box-shadow: var(--shadow-button);
+}

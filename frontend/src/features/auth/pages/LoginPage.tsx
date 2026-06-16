@@ -76,7 +76,7 @@ export function LoginPage() {
                 Password
               </label>
 
-              <Link to="/login" className="auth-form__forget">
+              <Link to="/login" className="auth-form__forgot">
                 Forgot password?
               </Link>
             </div>

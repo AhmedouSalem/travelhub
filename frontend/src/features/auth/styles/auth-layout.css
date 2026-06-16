@@ -1,0 +1,25 @@
+.auth-page {
+    display: grid;
+    grid-template-columns: minmax(420px, 42%) minmax(0, 1fr);
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+.auth-page__form-side {
+    display: flex;
+    flex-direction: column;
+    padding: 58px 96px 48px;
+}
+
+.auth-page__visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+        linear-gradient(90deg,
+            rgba(255, 255, 255, 0.02),
+            rgba(17, 24, 39, 0.32)),
+        url('/images/auth-terminal-bg.jpg') center / cover no-repeat;
+}
