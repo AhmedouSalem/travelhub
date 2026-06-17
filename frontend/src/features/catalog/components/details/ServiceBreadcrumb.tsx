@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./ServiceBreadcrumb.css";
+import "../../styles/service-breadcrumb.css";
 
 type ServiceBreadcrumbProps = {
   categoryLabel: string;

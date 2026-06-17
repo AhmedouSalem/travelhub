@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import type { CatalogItem } from "../../../../types/catalog";
 import { CatalogCard } from "../CatalogCard";
-import "./RecommendedServices.css";
+import "../../styles/recommended-services.css";
 
 type RecommendedServicesProps = {
     services: CatalogItem[];

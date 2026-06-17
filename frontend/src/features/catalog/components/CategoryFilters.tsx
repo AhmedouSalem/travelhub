@@ -1,5 +1,5 @@
 import type { CatalogCategory } from "../../../types/catalog";
-import "./CategoryFilters.css";
+import "../styles/catalog-filters.css";
 import {
   catalogCategoryOrder,
   categoryLabels,

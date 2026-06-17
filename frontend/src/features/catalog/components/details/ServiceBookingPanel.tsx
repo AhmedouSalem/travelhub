@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { formatPrice } from "../../utils/formatPrice";
-import "./ServiceBookingPanel.css";
+import "../../styles/service-booking-panel.css";
 
 type ServiceBookingPanelProps = {
   price: number;

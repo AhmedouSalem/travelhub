@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import type { CatalogItem } from "../../../types/catalog";
 import { categoryIcons, categoryLabels } from "../constants/catalogCategories";
 import { formatPrice } from "../utils/formatPrice";
-import "./CatalogCard.css";
+import "../styles/catalog-card.css";
 
 type CatalogCardProps = {
     item: CatalogItem;

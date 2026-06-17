@@ -1,0 +1,25 @@
+@media (max-width: 1150px) {
+  .catalog-section {
+    padding: 40px 32px 52px;
+  }
+
+  .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .catalog-section {
+    padding: 34px 20px 42px;
+  }
+
+  .catalog-section__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+}

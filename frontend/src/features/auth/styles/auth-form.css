@@ -50,6 +50,13 @@
     box-shadow: 0 0 0 4px rgba(88, 102, 238, 0.12);
 }
 
+.auth-form__password-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: -9px;
+}
+
 .auth-form__forgot {
     color: var(--color-primary);
     font-size: 14px;

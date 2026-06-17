@@ -1,4 +1,4 @@
-import "./HeroSection.css";
+import "../styles/catalog-hero.css";
 
 type HeroSectionProps = {
   searchQuery: string;
