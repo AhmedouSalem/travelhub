@@ -24,3 +24,8 @@ export type CatalogApiItem = {
     updatedAt?: string;
     __v?: number;
 };
+
+export type GetCatalogParams = {
+    category?: CatalogCategory;
+    search?: string;
+};

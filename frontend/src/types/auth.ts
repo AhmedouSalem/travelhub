@@ -26,12 +26,12 @@ export type LoginRegisterResponse = {
 };
 
 export type AuthContextValue = {
-  user: AuthUser | null;
-  token: string | null;
-  isAuthenticated: boolean;
-  isAdmin: boolean;
-  isLoading: boolean;
-  login: (payload: LoginPayload) => Promise<AuthUser>;
-  logout: () => void;
-  refreshProfile: () => Promise<void>;
+    user: AuthUser | null;
+    token: string | null;
+    isAuthenticated: boolean;
+    isAdmin: boolean;
+    isLoading: boolean;
+    login: (payload: LoginPayload) => Promise<AuthUser>;
+    logout: () => void;
+    refreshProfile: () => Promise<void>;
 };

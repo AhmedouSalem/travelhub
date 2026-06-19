@@ -1,11 +1,6 @@
-import type { CatalogApiItem, CatalogCategory, CatalogItem } from "../types/catalog"
+import type { CatalogApiItem, CatalogCategory, CatalogItem, GetCatalogParams } from "../types/catalog"
 import { API_ROUTES } from "./apiRoutes";
 import { api } from "./axiosClient";
-
-type GetCatalogParams = {
-    category?: CatalogCategory;
-    search?: string;
-};
 
 const fallbackImagesByCategory: Record<CatalogCategory, string> = {
     MEAL: "/images/menu-mediterraneen.jpg",
