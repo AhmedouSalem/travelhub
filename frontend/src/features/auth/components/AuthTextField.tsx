@@ -11,13 +11,17 @@ export function AuthTextField({
   id,
   ...inputProps
 }: AuthTextFieldProps) {
+  const controlClassName = icon
+    ? "auth-field__control"
+    : "auth-field__control auth-field__control--plain";
+
   return (
     <div className="auth-field">
       <label htmlFor={id} className="auth-field__label">
         {label}
       </label>
 
-      <div className="auth-field__control">
+      <div className={controlClassName}>
         {icon && (
           <span className="auth-field__icon" aria-hidden="true">
             {icon}

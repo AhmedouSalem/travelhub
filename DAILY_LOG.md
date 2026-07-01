@@ -366,3 +366,34 @@
 * Découpage en composants réutilisables pour préparer la page Register
 * Utilisation de l'image exportée depuis Visily plutôt qu'un faux background CSS
 * Conservation d'un formulaire non connecté pour garder une étape claire et maîtrisée
+
+## Jour 15 - Page Register statique
+
+### Ce qui fonctionne
+
+* Implémentation statique de la page Register selon la maquette Visily
+* Réutilisation de la structure visuelle des pages d'authentification
+* Adaptation du composant `AuthTextField` pour permettre des champs sans icône
+* Création d'un formulaire Register avec les champs prénom, nom, email et mot de passe
+* Affichage des champs First name et Last name côte à côte sur desktop
+* Ajout du message d'aide pour le mot de passe
+* Ajout du bouton `Create account`
+* Ajout du lien vers la page Login
+* Création d'une partie visuelle droite avec image de voyage et carte témoignage
+* Adaptation responsive de la page Register
+* Validation visuelle de la page Register
+
+### Ce qui reste à faire
+
+* Connecter le formulaire Register au backend avec `POST /auth/register`
+* Gérer les erreurs de validation du formulaire
+* Stocker le token JWT après inscription si le backend le retourne
+* Rediriger l'utilisateur après création du compte
+* Connecter ensuite le formulaire Login au backend
+* Adapter la page détail selon l'état connecté de l'utilisateur
+
+### Décision technique
+
+* Conservation d'une page Register statique pour valider d'abord l'interface avant l'intégration backend
+* Réutilisation des composants d'authentification existants pour garder une interface cohérente
+* Ajout de styles spécifiques à Register sans casser la page Login déjà validée

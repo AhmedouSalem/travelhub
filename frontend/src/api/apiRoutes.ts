@@ -7,6 +7,8 @@ export const API_ROUTES = {
   bookings: {
     list: "/bookings",
     create: "/bookings",
+    me: "/bookings/me",
+    cancel: (id: string) => `/bookings/${id}/cancel`
   },
   catalog: {
     list: "/catalog",
