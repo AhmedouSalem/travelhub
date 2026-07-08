@@ -32,6 +32,7 @@ export type AuthContextValue = {
     isAdmin: boolean;
     isLoading: boolean;
     login: (payload: LoginPayload) => Promise<AuthUser>;
+    register: (payload: RegisterPayload) => Promise<AuthUser>;
     logout: () => void;
     refreshProfile: () => Promise<void>;
 };

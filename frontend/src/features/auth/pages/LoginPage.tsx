@@ -1,8 +1,11 @@
 import { AuthLogo } from "../components/AuthLogo";
 import "./AuthPage.css";
 import { AuthTextField } from "../components/AuthTextField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthFeatureCard } from "../components/AuthFeatureCard";
+import { useAuth } from "../../../hooks/useAuth";
+import { useState, type ChangeEvent, type FormEvent } from "react";
+import { getAuthErrorMessage } from "../utils/getAuthErrorMessage";
 
 function EmailIcon() {
   return (
@@ -43,6 +46,51 @@ function LockIcon() {
 }
 
 export function LoginPage() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    setFormData((currentFormData) => ({
+      ...currentFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setErrorMessage(null);
+    setIsSubmitting(true);
+
+    try {
+      const connectedUser = await login({
+        email: formData.email.trim(),
+        password: formData.password,
+      });
+
+      navigate(connectedUser.role === "ADMIN" ? "/admin" : "/", {
+        replace: true,
+      });
+    } catch (error) {
+      setErrorMessage(
+        getAuthErrorMessage(
+          error,
+          "Unable to sign in. Please check your email and password.",
+        ),
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <main className="auth-page auth-page--login">
       <section className="auth-page__form-side">
@@ -57,18 +105,18 @@ export function LoginPage() {
             </p>
           </div>
 
-          <form
-            className="auth-form"
-            onSubmit={(event) => event.preventDefault()}
-          >
+          <form className="auth-form" onSubmit={handleSubmit}>
             <AuthTextField
               autoComplete="email"
               icon={<EmailIcon />}
               id="login-email"
               label="Email address"
               name="email"
+              onChange={handleChange}
               placeholder="name@example.com"
+              required
               type="email"
+              value={formData.email}
             />
 
             <div className="auth-form__password-row">
@@ -87,8 +135,11 @@ export function LoginPage() {
               id="login-password"
               label=""
               name="password"
+              onChange={handleChange}
               placeholder="••••••••"
+              required
               type="password"
+              value={formData.password}
             />
 
             <label className="auth-checkbox">
@@ -96,8 +147,18 @@ export function LoginPage() {
               <span>Remember me for 30 days</span>
             </label>
 
-            <button className="auth-submit-button" type="submit">
-              <span>Sign in to account</span>
+            {errorMessage && (
+              <p className="auth-form__error" role="alert">
+                {errorMessage}
+              </p>
+            )}
+
+            <button
+              className="auth-submit-button"
+              disabled={isSubmitting}
+              type="submit"
+            >
+              <span>{isSubmitting ? "Signing in..." : "Sign in to account"}</span>
               <span aria-hidden="true">→</span>
             </button>
 

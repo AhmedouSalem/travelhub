@@ -397,3 +397,36 @@
 * Conservation d'une page Register statique pour valider d'abord l'interface avant l'intégration backend
 * Réutilisation des composants d'authentification existants pour garder une interface cohérente
 * Ajout de styles spécifiques à Register sans casser la page Login déjà validée
+
+## Jour 16 - Connexion Login et Register au backend
+
+### Ce qui fonctionne
+
+* Connexion du formulaire Login au backend avec `POST /auth/login`
+* Connexion du formulaire Register au backend avec `POST /auth/register`
+* Ajout de la méthode `register` dans le contexte d'authentification frontend
+* Stockage du token JWT dans `localStorage`
+* Mise à jour de l'utilisateur connecté après login ou register
+* Redirection de l'utilisateur après connexion ou inscription
+* Redirection des administrateurs vers l'espace admin après login
+* Restauration de la session utilisateur après rafraîchissement grâce à `/auth/profile`
+* Ajout d'une gestion des erreurs d'authentification côté interface
+* Ajout d'un état de chargement pendant l'envoi des formulaires
+* Validation fonctionnelle de Login et Register avec le backend déployé
+
+### Ce qui reste à faire
+
+* Adapter le header public selon l'état d'authentification : visiteur, utilisateur connecté ou administrateur
+* Adapter la page détail selon l'état connecté de l'utilisateur
+* Afficher le sélecteur de quantité pour un utilisateur connecté
+* Connecter le bouton `Book now` au backend avec `POST /bookings`
+* Implémenter la page `My bookings`
+* Connecter l'historique utilisateur avec `GET /bookings/me`
+* Ajouter l'annulation d'une réservation avec `PATCH /bookings/:id/cancel`
+
+### Décision technique
+
+* Utilisation du `AuthContext` comme point central pour gérer la session utilisateur
+* Conservation du token dans `localStorage` afin de restaurer la session après rechargement
+* Gestion des erreurs API dans un utilitaire dédié pour éviter de dupliquer la logique dans Login et Register
+* Redirection différente selon le rôle utilisateur après connexion

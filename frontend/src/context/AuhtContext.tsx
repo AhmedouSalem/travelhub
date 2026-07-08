@@ -1,5 +1,5 @@
 import { createContext, useEffect, useMemo, useState } from "react";
-import type { AuthContextValue, AuthUser, LoginPayload } from "../types/auth";
+import type { AuthContextValue, AuthUser, LoginPayload, RegisterPayload } from "../types/auth";
 import { authApi } from "../api/authApi";
 
 export const AuthContext = createContext<AuthContextValue | null>(null);
@@ -28,6 +28,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     return data.user;
   };
+
+  const register = async (payload: RegisterPayload): Promise<AuthUser> => {
+    const data = await authApi.register(payload);
+
+    localStorage.setItem(TOKEN_KEY, data.accessToken);
+    setToken(data.accessToken);
+    setUser(data.user);
+
+    return data.user;
+  }
 
   const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
@@ -62,6 +72,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       isAdmin: user?.role === "ADMIN",
       isLoading,
       login,
+      register,
       logout,
       refreshProfile,
     }),
